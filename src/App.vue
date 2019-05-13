@@ -1,49 +1,35 @@
 <template>
-  <div id="app" class="principal">
-    <Entrada/>
-  </div>
+  <v-app>
+    <v-toolbar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Vuetify</span>
+        <span class="font-weight-light">MATERIAL DESIGN</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        flat
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>open_in_new</v-icon>
+      </v-btn>
+    </v-toolbar>
+
+    <v-content>
+      <router-view/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import Entrada from '@/views/Entrada.vue'
 
 export default {
   name: 'App',
-  components: { Entrada },
-  data(){
-    return{ 
-      appName: 'Clientes'
-    }
-  },
-  computed:{
-    reversed: function(){
-      return this.appName.split('').reverse().join('')
+  data () {
+    return {
+      //
     }
   }
 }
-
 </script>
-
-<style lang="scss">
-  html{
-    font-size: 62.5% !important;
-  }
-
-  .principal{
-    color: white;
-    background-color: #a21010;
-    width: 400px;
-    text-align: center;padding: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 3rem;
-  }
-
-  .terciario{
-      background-color: gray;
-      margin: 10px 0;
-      border-radius: 5px;
-      padding: 10px;
-  }
-</style>
-
