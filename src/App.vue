@@ -1,34 +1,31 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar color="primary" dark app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>{{titulo}}</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>open_in_new</v-icon>
-      </v-btn>
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <v-container fluid fill-height>
+        <component :is="componenteActual" />
+      </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
 
+import Registro from '@/views/usuario/Registro.vue'
+import Login from '@/views/usuario/Login.vue'
+import Home from '@/views/Home.vue'
 export default {
+  components: { Home, Registro, Login },
   name: 'App',
   data () {
     return {
-      //
+      titulo: 'Super Opera',
+      componenteActual: 'Login'
     }
   }
 }
