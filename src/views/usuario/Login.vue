@@ -42,6 +42,8 @@
 
 <script>
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
+import { setTimeout } from 'timers';
+import {mapMutations,mapGetters} from 'vuex'
 export default {
     data(){
         return {
@@ -52,12 +54,43 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['mostrarOcupado','ocultarOcupado','mostrarExito']),
+        ...mapMutations('sesion',['actualizarUsuario']),
         ingresar(){
             if(this.$v.formulario.$invalid){ 
                 this.$v.formulario.$touch()
                 return 
             }
-            alert('Consultando')
+            let usuario = {
+                userName: 'Mauricio',
+                nombres:'Mauricio',
+                apellidos:'Renero',
+                sexo: 'M',
+                descripcion: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.',
+                biografia:'facebook.com',
+                foto:'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
+            }
+
+            let ocupado = {
+                titulo: 'Validando Credenciles',
+                mensaje: 'Estamos validando tu información...'
+            }
+
+            //this.$store.commit('mostrarOcupado',ocupado)
+            this.mostrarOcupado(ocupado)
+
+            setTimeout(() => {
+                //this.$store.commit('ocultarOcupado')
+                this.ocultarOcupado()
+
+                //this.$store.state.usuario = usuario
+                //this.$store.commit('actualizarUsuario',usuario)
+                this.actualizarUsuario(usuario)
+                
+                //this.$store.commit('mostrarExito',this.$store.getters.saludo)
+                //this.$store.commit('mostrarExito',this.saludo)
+                this.mostrarExito(this.saludo)
+            },1000)
         }
     },
     validations:{
@@ -74,6 +107,8 @@ export default {
         }
     },
     computed:{
+        // ...mapGetters(['saludo']),
+        ...mapGetters('sesion',['saludo']),
         erroresEmail(){
             let errores = []
             if(!this.$v.formulario.email.$dirty){ return errores }
