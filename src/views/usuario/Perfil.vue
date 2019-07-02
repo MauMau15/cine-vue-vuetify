@@ -1,7 +1,7 @@
 <template>
   <v-layout text-xs-center align-start justify-center>
     <v-flex xs12 sm6>
-      <v-card class="elevation-12" :hover="true">
+      <v-card v-if="usuario" class="elevation-12" :hover="true">
         <v-img :src="usuario.foto" :alt="usuario.nombres" height="200px"></v-img>
 
         <v-card-title primary-title>

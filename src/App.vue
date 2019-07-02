@@ -4,8 +4,8 @@
     <v-navigation-drawer v-model="menu" app>
 
       <v-list>
-
-        <v-list-tile @click="render('home')">
+        <v-list-tile :to="{path:'/'}">
+        <!-- <v-list-tile @click="render('home')"> -->
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -14,7 +14,8 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile v-if="usuario" @click="render('Perfil')">
+        <v-list-tile v-if="usuario" :to="{name:'perfil'}">
+        <!-- <v-list-tile v-if="usuario" @click="render('Perfil')"> -->
           <v-list-tile-action>
             <v-icon>account_circle</v-icon>
           </v-list-tile-action>
@@ -32,7 +33,8 @@
           </v-list-tile-content>
         </v-list-tile> -->
 
-        <v-list-tile v-if="!usuario" @click="render('Login')">
+        <v-list-tile v-if="!usuario" :to="{name:'login'}">
+        <!-- <v-list-tile v-if="!usuario" @click="render('Login')"> -->
           <v-list-tile-action>
             <v-icon>arrow_forward</v-icon>
           </v-list-tile-action>
@@ -41,7 +43,7 @@
           </v-list-tile-content>
         </v-list-tile>
 
-        <v-list-tile v-if="usuario" @click="salir">
+        <v-list-tile v-if="usuario" @click="salir" :to="{name:'login'}">
           <v-list-tile-action>
             <v-icon>arrow_back</v-icon>
           </v-list-tile-action>
@@ -65,7 +67,8 @@
 
     <v-content>
       <v-container fluid fill-height>
-        <component :is="componenteActual" />
+        <router-view></router-view>
+        <!-- <component :is="componenteActual" /> -->
       </v-container>
     </v-content>
 
@@ -107,15 +110,15 @@
 
 <script>
 
-import Registro from '@/views/usuario/Registro.vue'
-import Login from '@/views/usuario/Login.vue'
-import Home from '@/views/Home.vue'
-import Perfil from '@/views/usuario/Perfil.vue'
+// import Registro from '@/views/usuario/Registro.vue'
+// import Login from '@/views/usuario/Login.vue'
+// import Home from '@/views/Home.vue'
+// import Perfil from '@/views/usuario/Perfil.vue'
 
 import {mapState,mapMutations,mapActions} from 'vuex'
 
 export default {
-  components: { Home, Registro, Login, Perfil },
+  // components: { Home, Registro, Login, Perfil },
   name: 'App',
   data () {
     return {
